@@ -44,14 +44,32 @@ function showCheckedOption(e) {
     document.getElementById(e.target.id).parentElement.classList.add('highlight')
 }
 
-getImgBtn.addEventListener("click",getMatchingCatsArray)
+getImgBtn.addEventListener("click",renderCat)
 
 function getMatchingCatsArray() {
     const isGif = gifsOnlyOption.checked
-    console.log(isGif)
     if (document.querySelector('input[type="radio"]:checked')) {
         const checkedRadio = document.querySelector('input[type="radio"]:checked').value
-        console.log(checkedRadio)
+        const MatchingCatsArray = catsData.filter(function(cat) {
+            if (isGif) {
+                return cat.emotionTags.includes(checkedRadio) && cat.isGif
+            } else {
+                return cat.emotionTags.includes(checkedRadio)
+            }
+            
+        })
+       return MatchingCatsArray
     }
+    
+}
 
+function getSingleCatObject(){
+    const catsArray = getMatchingCatsArray()
+    if (catsArray.length <= 1) {
+        console.log(catsArray)
+    }
+}
+
+function renderCat(){
+    getSingleCatObject()
 }
