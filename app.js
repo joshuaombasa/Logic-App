@@ -3,6 +3,8 @@ import { catsData } from '/data.js'
 const displayEmotions = document.getElementById('display-emotions')
 const getImgBtn = document.getElementById("get-img-btn")
 const gifsOnlyOption = document.getElementById("gifs-only-option")
+const memeModalInner = document.getElementById('meme-modal-inner')
+const memeModal = document.getElementById('meme-modal') 
 
 function getEmotionsArray(cats) {
     let emotionsArray = []
@@ -66,13 +68,20 @@ function getMatchingCatsArray() {
 function getSingleCatObject(){
     const catsArray = getMatchingCatsArray()
     if (catsArray.length === 1){
-        console.log(catsArray[0])
+        return catsArray[0]
     }
     else {
-        console.log(catsArray[Math.floor(Math.random() * catsArray.length)])
+       return catsArray[Math.floor(Math.random() * catsArray.length)]
     }
 }
 
 function renderCat(){
-    getSingleCatObject()
+    const catObject = getSingleCatObject()
+    memeModal.innerHTML = `<img 
+                              class="cat-img" 
+                              src="./images/${catObject.image}"
+                              alt="${catsData.alt}"
+                         >`                          
+    
+    memeModal.style.display = 'flex'
 }
