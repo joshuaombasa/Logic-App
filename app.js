@@ -5,6 +5,7 @@ const getImgBtn = document.getElementById("get-img-btn")
 const gifsOnlyOption = document.getElementById("gifs-only-option")
 const memeModalInner = document.getElementById('meme-modal-inner')
 const memeModal = document.getElementById('meme-modal') 
+const memeModalCloseBtn = document.getElementById("meme-modal-close-btn")
 
 function getEmotionsArray(cats) {
     let emotionsArray = []
@@ -85,3 +86,7 @@ function renderCat(){
     
     memeModal.style.display = 'flex'
 }
+
+memeModalCloseBtn.addEventListener("click", () => {
+    memeModal.style.display = 'none'
+})
